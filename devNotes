@@ -1,0 +1,34 @@
+Axios and cookies:
+https://github.com/facebook/react-native/issues/1274
+
+import CookieManager from 'react-native-cookies';
+import axios from 'axios';
+
+...
+
+// make call to server to authenticate
+const response = await axios({
+    method: 'post;,
+    data: {username: ..., password: ...},
+})
+
+// Pull cookie off response
+const cookieToSave = response.headers['set-cookie'][0];
+
+// Save cookieToSave to AsyncStorag
+
+// Clear cookies automatically saved on native side
+await CookieManager.clearAll();
+
+// Pull cookie from AsyncStorage
+const authenticationCookie = ...;
+
+// Then later, make a request and add the header
+const authenticatedResponse = await axios({
+    ...,
+    headers: {Cookie: authenticationCookie},
+});
+
+
+// Raw Query:
+    // {"operationName":"videoFilter","variables":{"slugs":["last-week"]},"query":"query videoFilter($slugs: [ID!]!) {\n  videoFilter(slugs: $slugs) {\n    slug\n    name\n    headerImageUrl\n    subfilters {\n      edges {\n        node {\n          slug\n          name\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    videos(first: 16) {\n      pageInfo {\n        hasNextPage\n        endCursor\n        __typename\n      }\n      edges {\n        node {\n          id\n          name\n          url\n          publicDatetime\n          thumbnail {\n            url\n            __typename\n          }\n          defaultThumbnail {\n            url\n            __typename\n          }\n          authors {\n            edges {\n              node {\n                thumbnail {\n                  url\n                  __typename\n                }\n                __typename\n              }\n              __typename\n            }\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"}
