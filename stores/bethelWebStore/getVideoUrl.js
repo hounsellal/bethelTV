@@ -10,7 +10,7 @@ export default async function(url){
 
     const $ = cheerio.load(text);
 
-    let apiLink = $('div[id="livestream-api-link"]');
+    let apiLink = $('div[id="video-source-data"]');
     if(apiLink.length){
         
         let link = apiLink.attr('data-value');

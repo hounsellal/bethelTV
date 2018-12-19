@@ -35,15 +35,16 @@ class VideoCard extends Component {
 
     render(){
         let {item, index} = this.props;
+        let selected = this.state.selected;
         return (
             <TouchableOpacity 
                 onPress={()=>this.props.openSubVideos(item.href, item.name)} hasTVPreferredFocus={index === 0}
                 onFocus={this.focusItem}
                 onBlur={this.unFocusItem}
             > 
-                <ImageBackground source={{uri: item.image}} style={[styles.imageCard, this.state.selected ? styles.selectedImageCard : null]}>
-                    <View style={{backgroundColor: 'black', padding: 15}}>
-                      <Text style={{fontSize: 30, color: 'white'}}>{item.name}</Text>
+                <ImageBackground source={{uri: item.image}} style={[styles.imageCard, selected ? styles.selectedImageCard : null]}>
+                    <View style={{backgroundColor: selected ? 'white' : '#222', padding: 20}}>
+                      <Text style={{fontSize: 40, color: selected ? 'black' : 'white'}}>{item.name}</Text>
                     </View>
                 </ImageBackground>
             </TouchableOpacity>

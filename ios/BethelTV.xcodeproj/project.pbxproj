@@ -37,7 +37,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* BethelTVTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BethelTVTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		4113EBC0052E41CEBBB059B8 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ACF7C59CA594A50B0D14CDB /* libRCTVideo.a */; };
-		61B40E27218A990000E1D408 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B40E23218A98A300E1D408 /* libRCTVideo.a */; };
+		612C535721920C90009A6558 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B40E23218A98A300E1D408 /* libRCTVideo.a */; };
 		61B40E29218AA95200E1D408 /* BethelIcon.lsr in Resources */ = {isa = PBXBuildFile; fileRef = 61B40E28218AA95200E1D408 /* BethelIcon.lsr */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
@@ -409,7 +409,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61B40E27218A990000E1D408 /* libRCTVideo.a in Frameworks */,
+				612C535721920C90009A6558 /* libRCTVideo.a in Frameworks */,
 				2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */,
 				2D02E4C21E0B4AEC006451C7 /* libRCTAnimation.a in Frameworks */,
 				2D02E4C31E0B4AEC006451C7 /* libRCTImage-tvOS.a in Frameworks */,

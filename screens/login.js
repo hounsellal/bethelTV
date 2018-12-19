@@ -40,7 +40,7 @@ export default class Login extends Component {
     return (
       <View style={styles.container}>
 
-        <Image source={{url: "https://theme.zdassets.com/theme_assets/1293701/937a3604937beea46b58bf02b576bb516a0fb584.png"}} style={{width:300, height: 200, resizeMode: 'contain'}} />
+        <Image source={require('../images/bethelLogoMuted.png')} style={{width:300, height: 200, resizeMode: 'contain'}} />
 
         {
             this.state.loggingIn ?

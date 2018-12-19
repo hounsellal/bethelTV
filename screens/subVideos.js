@@ -49,16 +49,17 @@ class VideoCard extends Component {
     render(){
         let {item, focus} = this.props;
         let date = (item.node && item.node.publicDatetime) ? moment(item.node.publicDatetime * 1000).format("MMMM D, YYYY") : null;
+        let selected = this.state.selected;
         if(item.loadMore){
             return (
                 <TouchableOpacity onPress={this.props.loadMore}
                     onFocus={this.focusItem}
                     onBlur={this.unFocusItem}
                 >
-                    <View style={[{width: 300, height: 400, backgroundColor: this.props.adding ? '#111' : '#444', padding: 30, margin: 30, borderRadius: 10, justifyContent: 'center', alignItems: 'center'}, this.state.selected ? styles.selectedImageCard : null]}>
+                    <View style={[{width: 300, height: 400, backgroundColor: this.props.adding ? '#111' : selected ? 'white' : '#222', padding: 30, margin: 30, borderRadius: 10, justifyContent: 'center', alignItems: 'center'}, this.state.selected ? styles.selectedImageCard : null]}>
                         {
                             this.props.adding ? <ActivityIndicator size="large" /> :
-                            <Text style={{color: this.state.selected ? '#ddd' : 'black', fontWeight: 'bold', fontSize: 50}}>Load More</Text>
+                            <Text style={{color: selected ? '#333' : '#666', fontWeight: 'bold', fontSize: 50}}>Load More</Text>
                         }
                     </View>
                 </TouchableOpacity>
@@ -71,8 +72,8 @@ class VideoCard extends Component {
                     onBlur={this.unFocusItem}
                 > 
                     <ImageBackground source={{uri: this.getThumbnail(item.node)}} style={[styles.imageCard, this.state.selected ? styles.selectedImageCard : null]}>
-                        <View style={{backgroundColor: 'black', padding: 15}}>
-                          <Text style={{fontSize: 30, color: 'white'}}>{item.node.name}</Text>
+                        <View style={{backgroundColor: selected ? 'white':'#222', padding: 20}}>
+                          <Text style={{fontSize: 30, color: selected ? 'black' : 'white'}}>{item.node.name}</Text>
                           <Text style={{fontSize: 25, color: '#999'}}>{date}</Text>
                         </View>
                     </ImageBackground>
@@ -124,6 +125,14 @@ export default class SubVideos extends Component {
 
     onSearch = async() => {
         this.props.VideosStore.search(this.state.searchTerm);
+    }
+
+    videoError = (error) => {
+        Alert.alert("Network Error", "BethelTV seems to be experiencing difficulties at the moment. Please try back again. Please check the website to see if you experience a similar difficulty. If no, please send an email to hi@prayermail.co and we will look into it.", [
+            {text: 'OK', onPress: () => this.video.dismissFullscreenPlayer()},
+          ])
+        
+        
     }
 
     render(){
@@ -200,6 +209,7 @@ export default class SubVideos extends Component {
                       style={{
                        width:0, height: 0
                       }}
+                      //onError={this.videoError}
                     />
                     : null
                 }

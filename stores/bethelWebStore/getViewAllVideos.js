@@ -15,7 +15,7 @@ export default async function(url){
 
     cards.each(function(card){
         let image = $(this).find('.card__image').attr('data-src');
-        let name = $(this).find('.card-caption__title').text();
+        let name = $(this).find('.card-caption__title').text().trim();
         let href = $(this).attr('href');
         videos.push({
             image, name, href

@@ -55,7 +55,7 @@ class VideoCard extends Component {
           onBlur={this.unFocusItem}
         >
           <View style={[styles.viewAllCard, selected ? styles.selectedViewAllCard : null]}>
-            <Text style={{fontSize: 50, color: 'white'}}>{card.name}</Text>
+            <Text style={{fontSize: 50, color: selected ? '#333' : 'white'}}>{card.name}</Text>
           </View>
         </TouchableOpacity>
       )
@@ -70,8 +70,8 @@ class VideoCard extends Component {
           <ImageBackground source={{uri: card.image}} style={[styles.imageCard, selected ? styles.selectedImageCard : null]}>
             {
               card.name ?
-              <View style={{backgroundColor: 'black', padding: 10}}>
-                <Text style={{fontSize: 30, color: 'white'}}>{card.name}</Text>
+              <View style={{backgroundColor: selected ? 'white' : '#222', padding: 20}}>
+                <Text style={{fontSize: 30, color: selected ? 'black' : 'white'}}>{card.name}</Text>
                 <Text style={{fontSize: 25, color: '#999'}}>{card.date}</Text>
               </View>
               : null
@@ -86,8 +86,8 @@ class VideoCard extends Component {
           onFocus={this.focusItem}
           onBlur={this.unFocusItem}
         >
-          <View style={[styles.viewAllCard, selected ? styles.selectedViewAllCard : null]}>
-            <Text style={{fontSize: 50, color: 'white'}}>{card.name}</Text>
+          <View style={[styles.textCard, selected ? styles.selectedTextCard : null]}>
+            <Text style={{fontSize: 50, color: selected ? 'black' : 'white'}}>{card.name}</Text>
             <Text style={{fontSize: 25, color: '#999'}}>{card.date}</Text>
           </View>
         </TouchableOpacity>
@@ -133,6 +133,14 @@ export default class Home extends Component {
     this.props.VideosStore.populateViewAllList(href);
     this.props.VideosStore.setViewAllTitle(title);
     this.props.navigation.navigate('ViewAllVideos');
+  }
+
+  videoError = (error) => {
+      Alert.alert("Network Error", "BethelTV seems to be experiencing difficulties at the moment. Please try back again. Please check the website to see if you experience a similar difficulty. If no, please send an email to hi@prayermail.co and we will look into it.", [
+          {text: 'OK', onPress: () => this.video.dismissFullscreenPlayer()},
+        ])
+
+
   }
 
   render() {
@@ -186,6 +194,7 @@ export default class Home extends Component {
               ref={r => { this.video = r }}
               source={{uri: this.state.videoUrl}}
               //fullscreen={true}
+              //onError={this.videoError}
               style={{
                width:0, height: 0
               }}
@@ -216,10 +225,10 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
-  imageCard: {width:200, height: 300, margin: 30, justifyContent: 'flex-end', borderRadius: 10, resizeMode: 'cover', overflow: 'hidden', backgroundColor: '#444'},
-  textCard: {padding: 20, backgroundColor: '#333', width: 300, margin: 30, height: 200, borderRadius: 10},
-  selectedImageCard: {width: 260, height: 360, margin: 0},
-  selectedTextCard: {width:360, height: 260, margin: 0},
-  viewAllCard: {width:300, height: 300, margin: 30, backgroundColor: '#333', borderRadius: 10, padding:20},
-  selectedViewAllCard: {width: 360, height: 360, margin: 0}
+  imageCard: {width:300, height: 400, margin: 30, justifyContent: 'flex-end', borderRadius: 10, resizeMode: 'cover', overflow: 'hidden', backgroundColor: '#444'},
+  textCard: {padding: 20, backgroundColor: '#222', width: 300, margin: 30, height: 400, borderRadius: 10},
+  selectedImageCard: {width: 360, height: 460, margin: 0},
+  selectedTextCard: {width:360, height: 460, margin: 0, backgroundColor: 'white'},
+  viewAllCard: {width:300, height: 400, margin: 30, backgroundColor: '#333', borderRadius: 10, padding:20},
+  selectedViewAllCard: {width: 360, height: 460, margin: 0, backgroundColor: 'white'}
 });
