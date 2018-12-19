@@ -1,4 +1,4 @@
 # bethelTV
 AppleTV app for BethelTV
 
-Feel free to build on this app to make BethelTV even better.
+Built in React Native. Feel free to submit pull requests to make it better!
