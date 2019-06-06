@@ -1,8 +1,6 @@
 const cheerio = require('react-native-cheerio');
-import logout from './logout';
 
 export default async function(cook = null) {
-    //await logout();
     let response = await fetch("https://www.bethel.tv/discover", {credentials: 'include'});
     let data = await response.text();
     const $ = cheerio.load(data);
