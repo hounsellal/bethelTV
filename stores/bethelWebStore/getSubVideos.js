@@ -16,8 +16,8 @@ export default async function(url){
     if(videoFilter.length){
         let filterArgs = JSON.parse(videoFilter.attr('data-react-props'));
 
-        let query = `query videoFilter($slugs: [ID!]!) {
-            videoFilter(slugs: $slugs) {
+        let query = `query videoFilter($slugs: [ID!]!, $type: String) {
+            videoFilter(slugs: $slugs, type: $type) {
                 slug
                 name
                 headerImageUrl
@@ -61,11 +61,19 @@ export default async function(url){
             }
         }`;
 
-        let body = JSON.stringify({
+
+        let body = {
             query,
             operationName: "videoFilter",
             variables: {slugs: [filterArgs.filter.slug]}
-        });
+        };
+
+        if(filterArgs.filter.type) {
+            body.variables.type = filterArgs.filter.type;
+        }
+
+        let bodyString = JSON.stringify(body);
+
 
         let res = await fetch("https://www.bethel.tv/graphql", {
             "credentials":"include",
@@ -76,7 +84,7 @@ export default async function(url){
             },
             "referrer":"https://www.bethel.tv/categories/last-week",
             "referrerPolicy":"no-referrer-when-downgrade",
-            "body": body,
+            "body": bodyString,
             "method":"POST",
             "mode":"cors"});
 
