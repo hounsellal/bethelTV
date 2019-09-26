@@ -10,7 +10,8 @@ export default async function(searchString, page = 1){
 
     const $ = cheerio.load(text);
 
-    const cards = $(".card-grid__card");
+    //we only want the actual videos to be returned so we limit to the videos section
+    const cards = $("section[class='card-grid videos']").find(".card-grid__card");
 
     let videos = [];
 

@@ -42,7 +42,7 @@ class VideoCard extends Component {
         else if(item.defaultThumbnail) tn = item.defaultThumbnail.url;
         else return tn;
 
-        if(tn.startsWith("//")) tn = tn.replace("//", "https://");
+        if(tn && tn.startsWith("//")) tn = tn.replace("//", "https://");
         return tn;
     }
 
